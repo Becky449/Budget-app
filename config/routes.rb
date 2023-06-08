@@ -1,9 +1,14 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
+  # get 'categories/index'
+  # get 'splash/index'
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  authenticated :user do
+    root 'categories#index', as: :authenticated_root
+  end
+
+  unauthenticated :user do
+    root to: 'splash#index'
+  end
 end
