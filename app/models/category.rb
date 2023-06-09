@@ -7,4 +7,9 @@ class Category < ApplicationRecord
   
     has_many :payments
     has_many :products, through: :payments
+
+    
+  def total_amount
+    products.sum(:amount)
   end
+end
