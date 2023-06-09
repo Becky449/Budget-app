@@ -28,6 +28,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name, :icon)
+    @category = Category.new(category_params)
+    current_user.categories << @category
   end
 end
